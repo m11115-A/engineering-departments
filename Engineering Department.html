@@ -1,0 +1,1120 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>كلية الهندسة — جامعة الإمام محمد بن سعود الإسلامية</title>
+  <meta name="description" content="بوابة تعريفية تفاعلية بأقسام كلية الهندسة: كهربائية، ميكانيكية، صناعية، كيميائية، مدنية، ومعمارية." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+/* ============ Base ============ */
+:root{
+  --bg: #0b1220;
+  --panel: rgba(255,255,255,0.06);
+  --panel2: rgba(255,255,255,0.08);
+  --text: rgba(255,255,255,0.92);
+  --muted: rgba(255,255,255,0.72);
+  --line: rgba(255,255,255,0.12);
+  --brand: #79b7ff;
+  --brand2: #9ff3ff;
+  --shadow: 0 12px 30px rgba(0,0,0,0.35);
+  --radius: 18px;
+}
+
+:root[data-theme="light"]{
+  --bg: #f6f8fc;
+  --panel: rgba(10,18,32,0.05);
+  --panel2: rgba(10,18,32,0.07);
+  --text: rgba(10,18,32,0.92);
+  --muted: rgba(10,18,32,0.68);
+  --line: rgba(10,18,32,0.14);
+  --brand: #1b64ff;
+  --brand2: #00a3ff;
+  --shadow: 0 18px 40px rgba(10,18,32,0.12);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Cairo", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background:
+    radial-gradient(900px 600px at 15% 10%, rgba(121,183,255,0.22), transparent 60%),
+    radial-gradient(900px 600px at 85% 20%, rgba(159,243,255,0.12), transparent 55%),
+    radial-gradient(900px 700px at 60% 95%, rgba(121,183,255,0.14), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  line-height:1.7;
+}
+
+a{color: inherit}
+.container{
+  width:min(1120px, calc(100% - 40px));
+  margin-inline:auto;
+}
+
+.sr{
+  position:absolute;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+
+.skip{
+  position:absolute; inset-inline-start:16px; inset-block-start:16px;
+  padding:10px 12px;
+  background: var(--panel2);
+  border:1px solid var(--line);
+  border-radius: 12px;
+  transform: translateY(-140%);
+  transition: transform .2s ease;
+  z-index: 9999;
+}
+.skip:focus{transform: translateY(0)}
+
+/* ============ Topbar ============ */
+.topbar{
+  position: sticky;
+  top:0;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.40), rgba(0,0,0,0.10));
+  border-bottom:1px solid var(--line);
+}
+:root[data-theme="light"] .topbar{
+  background: linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.45));
+}
+
+.topbar__inner{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:14px 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width: 280px;
+}
+.brand__logo{
+  width:54px; height:54px;
+  border-radius: 14px;
+  object-fit: contain;
+  background: rgba(255,255,255,0.90);
+  padding:6px;
+  border:1px solid rgba(255,255,255,0.25);
+}
+:root[data-theme="light"] .brand__logo{
+  border-color: rgba(10,18,32,0.15);
+}
+
+.brand__uni{
+  font-weight:700;
+  letter-spacing: 0.2px;
+}
+.brand__college{
+  font-weight:600;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.nav{
+  margin-inline-start:auto;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.nav__toggle{
+  display:none;
+  border:1px solid var(--line);
+  background: var(--panel);
+  border-radius: 14px;
+  padding:10px 12px;
+  color: var(--text);
+}
+.nav__toggleBars{
+  display:block;
+  width:18px; height:12px;
+  position:relative;
+}
+.nav__toggleBars::before,
+.nav__toggleBars::after{
+  content:"";
+  position:absolute; left:0; right:0;
+  height:2px;
+  background: currentColor;
+  border-radius: 999px;
+}
+.nav__toggleBars::before{top:0}
+.nav__toggleBars::after{bottom:0}
+.nav__menu{
+  list-style:none;
+  display:flex;
+  gap:8px;
+  padding:0;
+  margin:0;
+}
+.nav__link{
+  display:inline-block;
+  padding:10px 12px;
+  border-radius: 14px;
+  text-decoration:none;
+  color: var(--muted);
+  border:1px solid transparent;
+}
+.nav__link:hover{
+  color: var(--text);
+  border-color: var(--line);
+  background: var(--panel);
+}
+
+.actions{display:flex; gap:10px}
+
+/* ============ Buttons ============ */
+.btn{
+  border:1px solid var(--line);
+  background: var(--panel);
+  border-radius: 14px;
+  padding:10px 14px;
+  color: var(--text);
+  cursor:pointer;
+  font-weight:600;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.btn:hover{transform: translateY(-1px); background: var(--panel2)}
+.btn:active{transform: translateY(0)}
+.btn--primary{
+  background: linear-gradient(135deg, rgba(121,183,255,0.25), rgba(0,163,255,0.12));
+  border-color: rgba(121,183,255,0.35);
+}
+.btn--ghost{
+  background: transparent;
+}
+
+/* ============ Hero ============ */
+.hero{
+  padding: 30px 0 10px;
+}
+.hero__inner{
+  display:grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+.hero__copy{
+  padding: 26px;
+  border-radius: var(--radius);
+  border:1px solid var(--line);
+  background: linear-gradient(180deg, var(--panel), transparent);
+  box-shadow: var(--shadow);
+}
+.hero__copy h1{
+  margin: 0 0 10px;
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  letter-spacing: 0.2px;
+}
+.hero__copy p{margin:0 0 14px; color: var(--muted)}
+.hero__meta{display:flex; flex-wrap:wrap; gap:10px; margin: 16px 0}
+.pill{
+  padding:8px 10px;
+  border-radius: 999px;
+  border:1px solid var(--line);
+  background: var(--panel);
+  color: var(--muted);
+  font-weight:600;
+  font-size: 0.9rem;
+}
+.hero__cta{display:flex; gap:10px; flex-wrap:wrap; margin-top: 6px}
+.hero__card{
+  padding: 24px;
+  border-radius: var(--radius);
+  border:1px solid var(--line);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+.hero__card h2{margin:0 0 12px; font-size:1.2rem}
+.checklist{
+  margin:0; padding:0 18px 0 0;
+  color: var(--muted);
+}
+.checklist li{margin: 8px 0}
+
+/* ============ Sections ============ */
+.section{padding: 26px 0}
+.section--alt{padding: 34px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background: rgba(255,255,255,0.02)}
+:root[data-theme="light"] .section--alt{background: rgba(10,18,32,0.03)}
+.section__head{margin-bottom: 14px}
+.section__head h2{margin:0 0 4px; font-size:1.35rem}
+.muted{color: var(--muted); margin:0}
+
+.grid{
+  display:grid;
+  gap: 14px;
+}
+.grid--2{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card{
+  border:1px solid var(--line);
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+.card h3{margin:0 0 10px; font-size: 1.1rem}
+.sep{border:0; height:1px; background: var(--line); margin: 16px 0}
+.chips{display:flex; flex-wrap:wrap; gap:10px}
+.chip{
+  padding: 8px 10px;
+  border-radius: 999px;
+  border:1px solid var(--line);
+  background: rgba(0,0,0,0.10);
+}
+:root[data-theme="light"] .chip{background: rgba(10,18,32,0.05)}
+.bullets{margin: 0; padding: 0 18px 0 0; color: var(--muted)}
+.bullets li{margin: 8px 0}
+
+/* ============ Toolbar ============ */
+.toolbar{
+  display:flex;
+  gap: 12px;
+  align-items:center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 12px;
+  border-radius: var(--radius);
+  border:1px solid var(--line);
+  background: var(--panel);
+  margin-bottom: 14px;
+}
+.search input{
+  width: min(440px, 82vw);
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,0.10);
+  color: var(--text);
+  outline: none;
+}
+:root[data-theme="light"] .search input{background: rgba(10,18,32,0.05)}
+.search input::placeholder{color: rgba(255,255,255,0.55)}
+:root[data-theme="light"] .search input::placeholder{color: rgba(10,18,32,0.45)}
+
+/* ============ Accordion ============ */
+.accordion{display:grid; gap: 12px}
+.acc{
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  overflow:hidden;
+  background: var(--panel);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+}
+:root[data-theme="light"] .acc{box-shadow: 0 10px 22px rgba(10,18,32,0.08)}
+.acc__btn{
+  width:100%;
+  border:0;
+  background: transparent;
+  padding: 16px 16px;
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 14px;
+  align-items:center;
+  cursor:pointer;
+  color: inherit;
+  text-align: start;
+}
+.acc__title{font-weight: 800; font-size: 1.05rem}
+.acc__meta{color: var(--muted); font-weight: 600; font-size: 0.95rem}
+.acc__icon{
+  width: 34px; height: 34px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,0.10);
+  display:grid;
+  place-items:center;
+  position: relative;
+}
+:root[data-theme="light"] .acc__icon{background: rgba(10,18,32,0.05)}
+.acc__icon::before,
+.acc__icon::after{
+  content:"";
+  position:absolute;
+  background: currentColor;
+  border-radius: 999px;
+}
+.acc__icon::before{width: 14px; height:2px}
+.acc__icon::after{width:2px; height:14px}
+.acc[aria-open="true"] .acc__icon::after{display:none}
+
+.acc__panel{
+  border-top:1px solid var(--line);
+  padding: 14px 14px 16px;
+}
+.acc__grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 12px;
+}
+.box{
+  background: rgba(0,0,0,0.10);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px;
+}
+:root[data-theme="light"] .box{background: rgba(10,18,32,0.04)}
+.box h4{margin:0 0 8px}
+.list{margin:0; padding:0 18px 0 0; color: var(--muted)}
+.list li{margin: 7px 0}
+.note{margin:10px 0 0; color: var(--muted); font-size: 0.95rem}
+.salary{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 10px;
+}
+.salary__item{
+  border:1px solid var(--line);
+  background: rgba(0,0,0,0.12);
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+:root[data-theme="light"] .salary__item{background: rgba(10,18,32,0.05)}
+.salary__label{color: var(--muted); font-weight: 700; font-size: 0.88rem}
+.salary__value{font-weight: 900; letter-spacing: 0.2px; margin-top: 4px}
+
+/* ============ References ============ */
+.refs{margin:0; padding:0 18px 0 0}
+.refs li{margin: 8px 0; color: var(--muted)}
+.refs a{
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(255,255,255,0.35);
+}
+:root[data-theme="light"] .refs a{border-bottom-color: rgba(10,18,32,0.35)}
+.refs a:hover{color: var(--text); border-bottom-style: solid}
+
+/* ============ Footer ============ */
+.footer{
+  padding: 18px 0 24px;
+}
+.footer__inner{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  color: var(--muted);
+}
+.footer__top{text-decoration:none; padding: 8px 10px; border-radius: 12px; border:1px solid var(--line)}
+.footer__top:hover{color: var(--text); background: var(--panel)}
+
+/* ============ Responsive ============ */
+@media (max-width: 940px){
+  .hero__inner{grid-template-columns: 1fr}
+  .brand{min-width: 0}
+}
+@media (max-width: 780px){
+  .grid--2{grid-template-columns: 1fr}
+  .acc__grid{grid-template-columns: 1fr}
+  .nav__toggle{display:inline-flex}
+  .nav__menu{
+    position:absolute;
+    inset-inline-end: 20px;
+    top: 72px;
+    flex-direction: column;
+    width: min(320px, calc(100vw - 40px));
+    padding: 10px;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(12px);
+    transform-origin: top;
+    transform: scaleY(0.92);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .12s ease, transform .12s ease;
+  }
+  :root[data-theme="light"] .nav__menu{background: rgba(255,255,255,0.92)}
+  .nav__menu[data-open="true"]{
+    opacity: 1;
+    transform: scaleY(1);
+    pointer-events: auto;
+  }
+}
+
+</style>
+</head>
+
+<body>
+  <a class="skip" href="#main">تجاوز إلى المحتوى</a>
+
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <img class="brand__logo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QCMRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAIAAIdpAAQAAAABAAAAWgAAAAAAAABIAAAAAQAAAEgAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAAAfSgAwAEAAAAAQAAAfQAAAAA/8AAEQgB9AH0AwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/bAEMAAgICAgICAwICAwUDAwMFBgUFBQUGCAYGBgYGCAoICAgICAgKCgoKCgoKCgwMDAwMDA4ODg4ODw8PDw8PDw8PD//bAEMBAgMDBAQEBwQEBxALCQsQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEP/dAAQAIP/aAAwDAQACEQMRAD8A/fyiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//Q/fyiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//R/fyiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//S/fyiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//T/fyiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//U/fyiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//V/fyiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//W/fyiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//X/fyiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAopM8ZpaACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//Q/fyiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoopCcUALXlnxV+KvgT4N+CNR+IfxC1FNM0XSo8ySEfOznhIo0z80khOEXucHoMh3xW+Kngj4MeBtT+IPxE1GPStF0yPdLK2N7MQdkUaZy8jnhEHJPev5Z/2iP2iPin+3r8VFtrdZNM8HaZK4sNP3/ubSHOfPnOcPPIPxziNOOKic4wjzzZcYuTSW56Z8aP8Agoj+1D+0V4rutE+Dt5d+EfDuZBBaaYfKujFnh7m75kVsf885ETnkZGT4eln+2d4fnPiTTPHmuSX6csYtbuXmx2wZJDux+n416wP+EJ+AXghIo1yWyVXINzezkDA6cY9MDYB+dY+OPiz4U+w638YPAN74V8O6u2y2vpYpkUPJjZHN5vH14j78V84sbiavNVoQ91HrqhRh7lWXvH2F+xl/wU+8UQeJ7b4R/tU3QEVwwitdemQQSwSnjy78DCiM/wDPYkFOsgKkun77RSRyoJEIIYAgj0PQ1/J18YPhLYfEex/t7QxHDrkUZeOQYCXKAAhZMf8Ajj8gjIxX1N/wT5/4KB6l8NdRtv2eP2h7uSLRonFrpOrXTEtp7kgJbXLn/lgTkRuQfL6H92Mp6eExscTDmizhrYeUJdz+iWioopI5EEkZDKwBBHfNS16ZxhRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf//R/fyiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiikJxQAteX/FL4qeCfgz4I1L4h/EPUU0vQ9LQtLK3LO54SKNeC0kh4RRySR60vxW+Kfgj4K+CNR+InxE1KPStD0uPMspxvd8HZFEmcySOeEQDJOea/lk/aL/aJ+J/7d/xUS0t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j/hyb8Bf+h68Sf8Akn/8Yr9nqKAPxh/4cm/AX/oevEn/AJJ//GKP+HJvwF/6HrxJ/wCSf/xiv2eooA/GH/hyb8Bf+h68Sf8Akn/8Yo/4cm/AX/oevEn/AJJ//GK/Z6igD8Yf+HJvwF/6HrxJ/wCSf/xij/hyb8Bf+h68Sf8Akn/8Yr9nqKAPxhP/AARO+ApB/wCK68SZ9f8AQ/8A4xXceA/+CPf7MfhDWoNX8S6hrXi6OBty2l7PDBbNjtILeKORv+/gHtX6zUUAc94e0LRvDGkWug+H7KLTtOsY0igt7dRHDEiDAVEHCgD06966AHNLgUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB//9b9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/9f9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/9D9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/9H9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/9L9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/9P9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/9T9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/9X9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/9b9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/9k=" alt="شعار جامعة الإمام محمد بن سعود الإسلامية" />
+        <div class="brand__text">
+          <div class="brand__uni">جامعة الإمام محمد بن سعود الإسلامية</div>
+          <div class="brand__college">كلية الهندسة</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="القائمة الرئيسية">
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="navMenu">
+          <span class="nav__toggleBars" aria-hidden="true"></span>
+          <span class="sr">فتح/إغلاق القائمة</span>
+        </button>
+
+        <ul id="navMenu" class="nav__menu">
+          <li><a class="nav__link" href="#about">تعريف الهندسة</a></li>
+          <li><a class="nav__link" href="#departments">الأقسام</a></li>
+          <li><a class="nav__link" href="#refs">المصادر</a></li>
+        </ul>
+      </nav>
+
+      <div class="actions">
+        <button id="themeToggle" class="btn btn--ghost" type="button" aria-pressed="false" title="تبديل الوضع">
+          الوضع
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <h1>بوابة كلية الهندسة</h1>
+          <p>
+            صفحة تعريفية تفاعلية توضح معنى الهندسة وأقسامها الأساسية، مع أمثلة للمسميات الوظيفية في السوق السعودي،
+            ومؤشرات رواتب تقريبية، ودورات/شهادات احترافية مرتبطة بكل تخصص.
+          </p>
+
+          <div class="hero__meta">
+            <div class="pill">تصميم حديث • متجاوب</div>
+            <div class="pill">قوائم تفاعلية</div>
+            <div class="pill">مصادر وروابط</div>
+          </div>
+
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#departments">استعرض الأقسام</a>
+            <a class="btn btn--ghost" href="#about">اقرأ تعريف الهندسة</a>
+          </div>
+        </div>
+
+        <div class="hero__card" role="region" aria-label="ملخص">
+          <h2>ملخص سريع</h2>
+          <ul class="checklist">
+            <li>الهندسة: تطبيق العلوم والرياضيات لتصميم حلول عملية.</li>
+            <li>كل قسم يعرض: تعريفًا، مسميات وظيفية، رواتب تقريبية، وشهادات/دورات.</li>
+            <li>الرواتب تقديرية وتتغير حسب المدينة، الخبرة، القطاع، وحجم الشركة.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>تعريف الهندسة</h2>
+          <p class="muted">
+            تعريف مختصر يعتمد على مراجع موسوعية/مؤسسية (تفاصيل الروابط في قسم “المصادر”).
+          </p>
+        </div>
+
+        <div class="grid grid--2">
+          <article class="card">
+            <h3>ماذا تعني الهندسة عمليًا؟</h3>
+            <p>
+              الهندسة هي نشاط مهني/علمي يركز على استخدام مبادئ العلوم والرياضيات لفهم مشكلة واقعية،
+              ثم تطوير حل قابل للتنفيذ وإدارته (تصميم، اختبار، تطبيق، وتشغيل وصيانة).
+            </p>
+            <p class="muted">
+              تركيز الهندسة ليس “المعرفة لذاتها” فقط، بل تحويل المعرفة إلى أنظمة ومنتجات وبنية تحتية وخدمات
+              تحقق منفعة وتوازن بين الأداء، السلامة، التكلفة، والاستدامة.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>مخرجات الهندسة</h3>
+            <div class="chips" aria-label="أمثلة لمخرجات الهندسة">
+              <span class="chip">أنظمة طاقة وشبكات</span>
+              <span class="chip">مصانع وخطوط إنتاج</span>
+              <span class="chip">مركبات وآلات</span>
+              <span class="chip">مواد وعمليات كيميائية</span>
+              <span class="chip">جسور ومبانٍ وطرق</span>
+              <span class="chip">نماذج رقمية (BIM)</span>
+            </div>
+
+            <hr class="sep" />
+
+            <h3>مفاتيح النجاح في أي تخصص</h3>
+            <ul class="bullets">
+              <li>أساسيات قوية: رياضيات + فيزياء + برمجة/نمذجة بحسب التخصص.</li>
+              <li>مهارات تصميم وتحليل (CAD/CAE أو أدوات تخصصية).</li>
+              <li>سلامة، جودة، وتوثيق هندسي.</li>
+              <li>تواصل وإدارة وقت/مشاريع.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="departments" class="section section--alt">
+      <div class="container">
+        <div class="section__head">
+          <h2>أقسام الهندسة الأساسية</h2>
+          <p class="muted">
+            اضغط على أي قسم لعرض التفاصيل (تعريف — مسميات — رواتب تقريبية — شهادات/دورات).
+          </p>
+        </div>
+
+        <div class="toolbar" role="region" aria-label="أدوات التصفية">
+          <label class="search" for="deptSearch">
+            <span class="sr">بحث</span>
+            <input id="deptSearch" type="search" placeholder="ابحث عن قسم أو مسمى وظيفي…" autocomplete="off" />
+          </label>
+
+          <div class="toolbar__buttons">
+            <button class="btn btn--ghost" type="button" data-action="expandAll">فتح الكل</button>
+            <button class="btn btn--ghost" type="button" data-action="collapseAll">إغلاق الكل</button>
+          </div>
+        </div>
+
+        <div class="accordion" id="accordion">
+          <!-- Electrical -->
+          <article class="acc" data-keywords="كهربائية كهرباء power حماية تشغيل صيانة اتصالات تحكم plc scada">
+            <button class="acc__btn" type="button" aria-expanded="false">
+              <span class="acc__title">الهندسة الكهربائية</span>
+              <span class="acc__meta">طاقة • تحكم • إلكترونيات • اتصالات</span>
+              <span class="acc__icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc__panel" hidden>
+              <div class="acc__grid">
+                <section class="box">
+                  <h4>التعريف</h4>
+                  <p>
+                    تخصص يهتم بتوليد ونقل وتوزيع الطاقة الكهربائية، وتصميم أنظمة التحكم والأتمتة،
+                    بالإضافة إلى الإلكترونيات والاتصالات حسب المسار.
+                  </p>
+                </section>
+
+                <section class="box">
+                  <h4>مسميات وظيفية شائعة</h4>
+                  <ul class="list">
+                    <li>مهندس كهرباء (Power / Electrical Engineer)</li>
+                    <li>مهندس حماية واختبارات (Protection & Testing Engineer)</li>
+                    <li>مهندس تحكم وأتمتة (Control/Automation Engineer)</li>
+                    <li>مهندس تصميم لوحات وMV/LV</li>
+                    <li>مهندس تشغيل وصيانة</li>
+                  </ul>
+                </section>
+
+                <section class="box">
+                  <h4>متوسط الرواتب في السعودية (مؤشرات)</h4>
+                  <div class="salary">
+                    <div class="salary__item">
+                      <div class="salary__label">Median سنوي (PayScale)</div>
+                      <div class="salary__value">≈ 71,000 ر.س/سنة</div>
+                    </div>
+                    <div class="salary__item">
+                      <div class="salary__label">متوسط شهري (GulfTalent - الرياض)</div>
+                      <div class="salary__value">≈ 11,000 ر.س/شهر</div>
+                    </div>
+                  </div>
+                  <p class="note">
+                    تقديري: يتغير حسب الخبرة والقطاع (طاقة/مقاولات/صناعة/مرافق) والمدينة.
+                  </p>
+                </section>
+
+                <section class="box">
+                  <h4>دورات/شهادات احترافية مرتبطة</h4>
+                  <ul class="list">
+                    <li>PLC/SCADA (أتمتة صناعية) — أساس لمسارات التحكم.</li>
+                    <li>ISA CAP (للمهندسين في الأتمتة والتحكم).</li>
+                    <li>Autodesk (AutoCAD/Revit MEP) للتصميم.</li>
+                    <li>PMP (لمن يتجه لإدارة المشاريع في الطاقة والمقاولات).</li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+          </article>
+
+          <!-- Mechanical -->
+          <article class="acc" data-keywords="ميكانيكية ميكانيكا hvac تكييف تبريد مضخات معدات صيانة تصميم">
+            <button class="acc__btn" type="button" aria-expanded="false">
+              <span class="acc__title">الهندسة الميكانيكية</span>
+              <span class="acc__meta">تصميم • تصنيع • HVAC • صيانة</span>
+              <span class="acc__icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc__panel" hidden>
+              <div class="acc__grid">
+                <section class="box">
+                  <h4>التعريف</h4>
+                  <p>
+                    تخصص يركز على تصميم وتشغيل الأنظمة الميكانيكية (آلات، محركات، أنظمة تبريد وتكييف،
+                    معدات دوّارة، خطوط تصنيع)، مع تحليل الأحمال والمواد والحركة.
+                  </p>
+                </section>
+
+                <section class="box">
+                  <h4>مسميات وظيفية شائعة</h4>
+                  <ul class="list">
+                    <li>مهندس ميكانيكا</li>
+                    <li>مهندس HVAC (تكييف/تهوية)</li>
+                    <li>مهندس معدات دوارة (Rotating Equipment)</li>
+                    <li>مهندس صيانة Reliability/Maintenance</li>
+                    <li>مهندس تصميم ميكانيكي (CAD/CAE)</li>
+                  </ul>
+                </section>
+
+                <section class="box">
+                  <h4>متوسط الرواتب في السعودية (مؤشرات)</h4>
+                  <div class="salary">
+                    <div class="salary__item">
+                      <div class="salary__label">Median سنوي (PayScale)</div>
+                      <div class="salary__value">≈ 73,890 ر.س/سنة</div>
+                    </div>
+                    <div class="salary__item">
+                      <div class="salary__label">متوسط شهري (GulfTalent)</div>
+                      <div class="salary__value">≈ 11,000 ر.س/شهر</div>
+                    </div>
+                  </div>
+                  <p class="note">الأرقام تقديرية وتتغير حسب القطاع (نفط وغاز/تصنيع/مقاولات/مرافق).</p>
+                </section>
+
+                <section class="box">
+                  <h4>دورات/شهادات احترافية مرتبطة</h4>
+                  <ul class="list">
+                    <li>Autodesk (AutoCAD/Revit MEP) — تصميم ميكانيكي وBIM.</li>
+                    <li>PMP — لإدارة مشاريع المقاولات/المرافق.</li>
+                    <li>مفاهيم Reliability (RCM) والصيانة التنبؤية.</li>
+                    <li>أساسيات السلامة المهنية (خصوصًا للصيانة والمواقع).</li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+          </article>
+
+          <!-- Industrial -->
+          <article class="acc" data-keywords="صناعية هندسة صناعية lean ستة سيجما ستةسيجما تحسين عمليات سلسلة امداد جودة تخطيط انتاج">
+            <button class="acc__btn" type="button" aria-expanded="false">
+              <span class="acc__title">الهندسة الصناعية</span>
+              <span class="acc__meta">تحسين عمليات • جودة • تخطيط • سلاسل إمداد</span>
+              <span class="acc__icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc__panel" hidden>
+              <div class="acc__grid">
+                <section class="box">
+                  <h4>التعريف</h4>
+                  <p>
+                    تخصص يهتم بتصميم وتحسين الأنظمة التشغيلية (عمليات، موارد، جودة، تكاليف، وقت)،
+                    ورفع كفاءة الأداء عبر أدوات التحليل، المحاكاة، وإدارة سلاسل الإمداد.
+                  </p>
+                </section>
+
+                <section class="box">
+                  <h4>مسميات وظيفية شائعة</h4>
+                  <ul class="list">
+                    <li>مهندس صناعي</li>
+                    <li>محلل عمليات/تحسين (Process Improvement Analyst)</li>
+                    <li>مهندس جودة (Quality Engineer)</li>
+                    <li>مخطط إنتاج (Production Planner)</li>
+                    <li>محلل سلسلة إمداد (Supply Chain Analyst)</li>
+                  </ul>
+                </section>
+
+                <section class="box">
+                  <h4>متوسط الرواتب في السعودية (مؤشرات)</h4>
+                  <div class="salary">
+                    <div class="salary__item">
+                      <div class="salary__label">Median سنوي (PayScale)</div>
+                      <div class="salary__value">≈ 74,031 ر.س/سنة</div>
+                    </div>
+                    <div class="salary__item">
+                      <div class="salary__label">تقريبي شهري (تحويل بسيط)</div>
+                      <div class="salary__value">≈ 9,800 ر.س/شهر</div>
+                    </div>
+                  </div>
+                  <p class="note">قد ترتفع بوضوح مع خبرة التحسين/البيانات/التحول التشغيلي.</p>
+                </section>
+
+                <section class="box">
+                  <h4>دورات/شهادات احترافية مرتبطة</h4>
+                  <ul class="list">
+                    <li>Lean Six Sigma (ASQ CSSGB).</li>
+                    <li>PMP — لإدارة مشاريع التحسين والتحول.</li>
+                    <li>أساسيات التحليل بالبيانات (Excel/Power BI/SQL) لمؤشرات الأداء.</li>
+                    <li>أساسيات إدارة سلاسل الإمداد (SCM) والتخطيط.</li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+          </article>
+
+          <!-- Chemical -->
+          <article class="acc" data-keywords="كيميائية هندسة كيميائية عمليات process مصانع بتروكيماويات تكرير سلامة hse">
+            <button class="acc__btn" type="button" aria-expanded="false">
+              <span class="acc__title">الهندسة الكيميائية</span>
+              <span class="acc__meta">عمليات • بتروكيماويات • تكرير • سلامة عمليات</span>
+              <span class="acc__icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc__panel" hidden>
+              <div class="acc__grid">
+                <section class="box">
+                  <h4>التعريف</h4>
+                  <p>
+                    تخصص يركز على تحويل المواد عبر عمليات صناعية (تفاعلات، فصل، نقل حرارة/كتلة)،
+                    وتصميم وتشغيل وحدات الإنتاج في المصانع (بتروكيماويات، تكرير، أدوية، غذاء).
+                  </p>
+                </section>
+
+                <section class="box">
+                  <h4>مسميات وظيفية شائعة</h4>
+                  <ul class="list">
+                    <li>مهندس عمليات (Process Engineer)</li>
+                    <li>مهندس إنتاج (Production Engineer)</li>
+                    <li>مهندس سلامة عمليات (Process Safety)</li>
+                    <li>مهندس تشغيل وحدات</li>
+                    <li>مهندس تحسين/كفاءة طاقة</li>
+                  </ul>
+                </section>
+
+                <section class="box">
+                  <h4>متوسط الرواتب في السعودية (مؤشرات)</h4>
+                  <div class="salary">
+                    <div class="salary__item">
+                      <div class="salary__label">Median سنوي (PayScale)</div>
+                      <div class="salary__value">≈ 103,097 ر.س/سنة</div>
+                    </div>
+                    <div class="salary__item">
+                      <div class="salary__label">متوسط شهري (GulfTalent)</div>
+                      <div class="salary__value">≈ 9,500 ر.س/شهر</div>
+                    </div>
+                  </div>
+                  <p class="note">الفروقات كبيرة حسب القطاع (بتروكيماويات/طاقة/صناعات تحويلية) والخبرة.</p>
+                </section>
+
+                <section class="box">
+                  <h4>دورات/شهادات احترافية مرتبطة</h4>
+                  <ul class="list">
+                    <li>أساسيات Process Safety وإدارة المخاطر (HAZOP/LOPA) — للمصانع عالية الخطورة.</li>
+                    <li>PMP — لمشاريع التوسعة والصيانة الكبرى.</li>
+                    <li>تحسين العمليات (Lean Six Sigma) — عند العمل على الإنتاج والجودة.</li>
+                    <li>برامج محاكاة العمليات (حسب جهة العمل/الجامعة).</li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+          </article>
+
+          <!-- Civil -->
+          <article class="acc" data-keywords="مدنية هندسة مدنية انشاءات طرق جسور بنية تحتية مياه صرف مشاريع">
+            <button class="acc__btn" type="button" aria-expanded="false">
+              <span class="acc__title">الهندسة المدنية</span>
+              <span class="acc__meta">إنشاءات • بنية تحتية • طرق • مياه</span>
+              <span class="acc__icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc__panel" hidden>
+              <div class="acc__grid">
+                <section class="box">
+                  <h4>التعريف</h4>
+                  <p>
+                    تخصص يهتم بتصميم وتنفيذ وإدارة مشاريع البنية التحتية والمنشآت (مبانٍ، جسور، طرق،
+                    شبكات مياه وصرف)، مع التركيز على السلامة، الجودة، والالتزام بالمعايير.
+                  </p>
+                </section>
+
+                <section class="box">
+                  <h4>مسميات وظيفية شائعة</h4>
+                  <ul class="list">
+                    <li>مهندس مدني</li>
+                    <li>مهندس موقع (Site Engineer)</li>
+                    <li>مهندس طرق/بنية تحتية</li>
+                    <li>مهندس تخطيط/تكاليف (Planning/Cost)</li>
+                    <li>مهندس جودة/QC أو HSE (ضمن المشاريع)</li>
+                  </ul>
+                </section>
+
+                <section class="box">
+                  <h4>متوسط الرواتب في السعودية (مؤشرات)</h4>
+                  <div class="salary">
+                    <div class="salary__item">
+                      <div class="salary__label">Median سنوي (PayScale)</div>
+                      <div class="salary__value">≈ 75,987 ر.س/سنة</div>
+                    </div>
+                    <div class="salary__item">
+                      <div class="salary__label">متوسط شهري (GulfTalent - الرياض)</div>
+                      <div class="salary__value">≈ 10,000 ر.س/شهر</div>
+                    </div>
+                  </div>
+                  <p class="note">الموقع/المشروع وطبيعة الشركة (استشاري/مقاول) يغيران الصورة بشكل ملحوظ.</p>
+                </section>
+
+                <section class="box">
+                  <h4>دورات/شهادات احترافية مرتبطة</h4>
+                  <ul class="list">
+                    <li>PMP — لإدارة مشاريع الإنشاءات.</li>
+                    <li>Autodesk AutoCAD + أساسيات BIM (Revit) حسب مجال الشركة.</li>
+                    <li>Lean Six Sigma (للجودة والتحسين) عند العمل على الأداء والتكاليف.</li>
+                    <li>أساسيات السلامة (HSE) للمشاريع الميدانية.</li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+          </article>
+
+          <!-- Architecture -->
+          <article class="acc" data-keywords="معمارية عمارة هندسة معمارية تصميم معماري BIM revit visualization urban تخطيط">
+            <button class="acc__btn" type="button" aria-expanded="false">
+              <span class="acc__title">الهندسة المعمارية</span>
+              <span class="acc__meta">تصميم • BIM • تشييد • تجربة مستخدم للمبنى</span>
+              <span class="acc__icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc__panel" hidden>
+              <div class="acc__grid">
+                <section class="box">
+                  <h4>التعريف</h4>
+                  <p>
+                    تخصص يدمج التصميم المعماري مع متطلبات الوظيفة والجمال والسلامة والتشريعات،
+                    ويركز على نمذجة المبنى (BIM) والتنسيق بين التخصصات خلال دورة حياة المشروع.
+                  </p>
+                </section>
+
+                <section class="box">
+                  <h4>مسميات وظيفية شائعة</h4>
+                  <ul class="list">
+                    <li>معماري/Architect</li>
+                    <li>مصمم معماري (Architectural Designer)</li>
+                    <li>منسق BIM / BIM Coordinator</li>
+                    <li>معماري مشروع (Project Architect)</li>
+                    <li>مصمم داخلي/واجهات (بحسب المسار)</li>
+                  </ul>
+                </section>
+
+                <section class="box">
+                  <h4>متوسط الرواتب في السعودية (مؤشرات)</h4>
+                  <div class="salary">
+                    <div class="salary__item">
+                      <div class="salary__label">متوسط شهري (GulfTalent)</div>
+                      <div class="salary__value">≈ 12,000 ر.س/شهر</div>
+                    </div>
+                    <div class="salary__item">
+                      <div class="salary__label">Median سنوي (PayScale - Project Architect)</div>
+                      <div class="salary__value">≈ 81,000 ر.س/سنة</div>
+                    </div>
+                  </div>
+                  <p class="note">تختلف كثيرًا حسب portfolio، نوع المشاريع، والجهة (استشاري/مطوّر/مقاول).</p>
+                </section>
+
+                <section class="box">
+                  <h4>دورات/شهادات احترافية مرتبطة</h4>
+                  <ul class="list">
+                    <li>Autodesk Revit (BIM) + AutoCAD.</li>
+                    <li>أساسيات تنسيق المشاريع (Project Coordination) وقد يفيد PMP لاحقًا.</li>
+                    <li>Visualization (حسب المسار) — إخراج معماري.</li>
+                    <li>معايير الاستدامة للمباني (بحسب الجهة/المشروع).</li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="refs" class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>المصادر (روابط مباشرة)</h2>
+          <p class="muted">
+            تم استخدام هذه الصفحات كمراجع لتعريف الهندسة ولمؤشرات الرواتب ولعدد من الشهادات المهنية.
+          </p>
+        </div>
+
+        <div class="grid grid--2">
+          <article class="card">
+            <h3>تعريف الهندسة</h3>
+            <ul class="refs">
+              <li><a href="https://www.britannica.com/technology/engineering" target="_blank" rel="noopener">Encyclopaedia Britannica — Engineering</a></li>
+              <li><a href="https://reports.raeng.org.uk/global-engineering-capability-review/defining-engineering.html" target="_blank" rel="noopener">Royal Academy of Engineering — Defining engineering</a></li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>مؤشرات الرواتب (السعودية)</h3>
+            <ul class="refs">
+              <li><a href="https://www.payscale.com/research/SA/Job%3DElectrical_Engineer/Salary" target="_blank" rel="noopener">PayScale — Electrical Engineer (SA)</a></li>
+              <li><a href="https://www.payscale.com/research/SA/Job%3DMechanical_Engineer/Salary" target="_blank" rel="noopener">PayScale — Mechanical Engineer (SA)</a></li>
+              <li><a href="https://www.payscale.com/research/SA/Job%3DIndustrial_Engineer/Salary" target="_blank" rel="noopener">PayScale — Industrial Engineer (SA)</a></li>
+              <li><a href="https://www.payscale.com/research/SA/Job%3DChemical_Engineer/Salary" target="_blank" rel="noopener">PayScale — Chemical Engineer (SA)</a></li>
+              <li><a href="https://www.payscale.com/research/SA/Job%3DCivil_Engineer/Salary" target="_blank" rel="noopener">PayScale — Civil Engineer (SA)</a></li>
+              <li><a href="https://www.payscale.com/research/SA/Job%3DProject_Architect/Salary" target="_blank" rel="noopener">PayScale — Project Architect (SA)</a></li>
+              <li><a href="https://www.gulftalent.com/saudi-arabia/salaries/riyadh/electrical-engineer" target="_blank" rel="noopener">GulfTalent — Electrical Engineer (Riyadh)</a></li>
+              <li><a href="https://www.gulftalent.com/saudi-arabia/salaries/mechanical-engineer" target="_blank" rel="noopener">GulfTalent — Mechanical Engineer (SA)</a></li>
+              <li><a href="https://www.gulftalent.com/saudi-arabia/salaries/chemical-engineer" target="_blank" rel="noopener">GulfTalent — Chemical Engineer (SA)</a></li>
+              <li><a href="https://www.gulftalent.com/saudi-arabia/salaries/riyadh/civil-engineer" target="_blank" rel="noopener">GulfTalent — Civil Engineer (Riyadh)</a></li>
+              <li><a href="https://www.gulftalent.com/saudi-arabia/salaries/architect" target="_blank" rel="noopener">GulfTalent — Architect (SA)</a></li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>شهادات/دورات مهنية (روابط رسمية)</h3>
+            <ul class="refs">
+              <li><a href="https://www.pmi.org/certifications/project-management-pmp" target="_blank" rel="noopener">PMI — PMP</a></li>
+              <li><a href="https://www.asq.org/cert/six-sigma-green-belt" target="_blank" rel="noopener">ASQ — Six Sigma Green Belt (CSSGB)</a></li>
+              <li><a href="https://www.isa.org/certification/cap" target="_blank" rel="noopener">ISA — Certified Automation Professional (CAP)</a></li>
+              <li><a href="https://www.autodesk.com/certification/overview" target="_blank" rel="noopener">Autodesk — Certification Overview</a></li>
+              <li><a href="https://www.autodesk.com/certification/all-certifications/autocad-design-drafting-professional" target="_blank" rel="noopener">Autodesk — AutoCAD Professional Certification</a></li>
+              <li><a href="https://www.autodesk.com/certification/architecture-engineering-construction-certification" target="_blank" rel="noopener">Autodesk — AEC Certifications (Revit, إلخ)</a></li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>ملاحظات منهجية</h3>
+            <ul class="bullets">
+              <li>الأرقام المعروضة “مؤشرات سوق” وليست عقدًا أو عرضًا وظيفيًا.</li>
+              <li>الرواتب تتأثر بالمدينة، الخبرة، القطاع، حجم الشركة، والبدلات.</li>
+              <li></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__note">© صفحة تعريفية تعليمية — كلية الهندسة</div>
+      <a class="footer__top" href="#main">للأعلى</a>
+    </div>
+  </footer>
+
+  <script>
+(() => {
+  const qs = (s, el=document) => el.querySelector(s);
+  const qsa = (s, el=document) => [...el.querySelectorAll(s)];
+
+  // Theme
+  const root = document.documentElement;
+  const themeToggle = qs('#themeToggle');
+
+  function setTheme(next){
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    themeToggle.setAttribute('aria-pressed', next === 'light' ? 'true' : 'false');
+    themeToggle.textContent = next === 'light' ? 'وضع: فاتح' : 'وضع: داكن';
+  }
+
+  const saved = localStorage.getItem('theme');
+  if(saved === 'light' || saved === 'dark'){
+    setTheme(saved);
+  } else {
+    // Prefer system (fallback to dark if unsupported)
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    setTheme(prefersLight ? 'light' : 'dark');
+  }
+
+  themeToggle?.addEventListener('click', () => {
+    const cur = root.getAttribute('data-theme') || 'dark';
+    setTheme(cur === 'dark' ? 'light' : 'dark');
+  });
+
+  // Mobile nav
+  const toggle = qs('.nav__toggle');
+  const menu = qs('#navMenu');
+  function closeMenu(){
+    toggle?.setAttribute('aria-expanded', 'false');
+    menu?.setAttribute('data-open', 'false');
+  }
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    menu.setAttribute('data-open', String(!open));
+  });
+  qsa('.nav__link').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('click', (e) => {
+    if(!menu || !toggle) return;
+    const within = menu.contains(e.target) || toggle.contains(e.target);
+    if(!within) closeMenu();
+  });
+
+  // Accordion
+  const items = qsa('.acc');
+  function openItem(acc){
+    const btn = qs('.acc__btn', acc);
+    const panel = qs('.acc__panel', acc);
+    acc.setAttribute('aria-open', 'true');
+    btn.setAttribute('aria-expanded', 'true');
+    panel.hidden = false;
+  }
+  function closeItem(acc){
+    const btn = qs('.acc__btn', acc);
+    const panel = qs('.acc__panel', acc);
+    acc.removeAttribute('aria-open');
+    btn.setAttribute('aria-expanded', 'false');
+    panel.hidden = true;
+  }
+  function toggleItem(acc){
+    const open = acc.getAttribute('aria-open') === 'true';
+    open ? closeItem(acc) : openItem(acc);
+  }
+
+  items.forEach(acc => {
+    const btn = qs('.acc__btn', acc);
+    const panel = qs('.acc__panel', acc);
+    // Initial state
+    panel.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+
+    btn.addEventListener('click', () => toggleItem(acc));
+    // Keyboard support
+    btn.addEventListener('keydown', (ev) => {
+      if(ev.key === 'Enter' || ev.key === ' '){
+        ev.preventDefault();
+        toggleItem(acc);
+      }
+    });
+  });
+
+  // Expand / collapse all
+  qsa('[data-action]').forEach(b => {
+    b.addEventListener('click', () => {
+      const action = b.getAttribute('data-action');
+      if(action === 'expandAll') items.forEach(openItem);
+      if(action === 'collapseAll') items.forEach(closeItem);
+    });
+  });
+
+  // Search filter
+  const search = qs('#deptSearch');
+  function normalize(s){
+    return (s || '')
+      .toLowerCase()
+      .replace(/[\u064B-\u065F]/g, '') // tashkeel
+      .replace(/\s+/g,' ')
+      .trim();
+  }
+  search?.addEventListener('input', () => {
+    const q = normalize(search.value);
+    items.forEach(acc => {
+      const text = normalize(acc.textContent);
+      const kw = normalize(acc.getAttribute('data-keywords'));
+      const ok = !q || text.includes(q) || kw.includes(q);
+      acc.style.display = ok ? '' : 'none';
+    });
+  });
+})();
+
+</script>
+</body>
+</html>
